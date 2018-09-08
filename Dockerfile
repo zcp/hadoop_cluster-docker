@@ -11,11 +11,11 @@ USER root
 
 # install required packages
 #RUN apk add --no-cache openssh openssl openjdk8-jre rsync bash procps
-RUN  yum install -y  openssh openssh-clients openssh-server openssl java-1.8.0-openjdk rsync bash procps wget which
+RUN  yum install -y  openssh openssh-clients openssh-server openssl java-1.8.0-openjdk-devel rsync bash procps wget which
 
 # set JAVA_HOME
-#ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
-ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64/jre
+ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk
+#ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5.x86_64/jre
 ENV PATH $PATH:$JAVA_HOME/bin
 
 # configure passwordless SSH
@@ -54,6 +54,8 @@ ENV HADOOP_MAPRED_HOME $HADOOP_HOME
 ENV HADOOP_YARN_HOME $HADOOP_HOME
 ENV HADOOP_CONF_DIR $HADOOP_HOME/etc/hadoop
 ENV YARN_CONF_DIR $HADOOP_PREFIX/etc/hadoop
+#when hadoop app run on the container, the following variable need to set.
+ENV HADOOP_CLASSPATH=$HADOOP_HOME:$HADOOP_CLASSPATH
 
 # add default config files which has one master and three slaves
 ADD core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
