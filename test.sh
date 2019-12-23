@@ -25,3 +25,15 @@ hdfs dfs -cat input/file2.txt
 # print the output of wordcount
 echo -e "\nwordcount output:"
 hdfs dfs -cat output/part-r-00000
+
+# get output file to local filesystem
+hdfs dfs -get output/part-r-00000
+#check
+ls
+
+# place output file to a specific directory
+hdfs dfs -copyToLocal output/part-r-00000 /tmp
+#check
+ls
+
+
