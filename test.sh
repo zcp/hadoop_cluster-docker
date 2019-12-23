@@ -34,6 +34,6 @@ ls
 # place output file to a specific directory
 hdfs dfs -copyToLocal output/part-r-00000 /tmp
 #check
-ls
+ls  /tmp
 
 
